@@ -20,27 +20,32 @@ MixedWordsLetters.prototype.renderForm = function(el) {
   this.el = el || body;
   const form = document.createElement('form');
   const headerText = document.createTextNode('Scramble word letters');
-  const instructionsText = document.createTextNode('Input any text and press Submit');
+  const instructionsText = document.createTextNode('Escreva qualquer texto abaixo e veja como funciona');
   const formHeader = document.createElement('h4');
+  const formIntroductionText = document.createTextNode('De adcroo com uma psuiqesa de uma ueasviddinre ianslge, não iortpma em qual oderm as lrtaes de uma palavra eotsã, a úncia cisoa itatrpomne é que a prmiiera e úmltia lraets ejstaem no lgaur ctroe. O rseto pode ser uma bnugaça tolat, que você aidna pdoe ler sem pamoebrl. Itso é proque nós não lmoes cdaa lreta ioaalsd, mas a plavara como um tdoo. Sohw de baol.');
+  const formIntroduction = document.createElement('p');
   const formInstructions = document.createElement('p');
   const formTextArea = document.createElement('textarea');
   const submitButtonText = document.createTextNode('Submit');
   const submitButton = document.createElement('button');
-  const outputBoxPlaceholder = document.createTextNode('result');
+  submitButton.setAttribute('id', 'submitButton');
+  const outputBoxPlaceholder = document.createTextNode(``);
   const outputBox = document.createElement('div');
   outputBox.setAttribute('id', 'outputText');
   const outputBoxEl = document.createElement('p');
   form.appendChild(formTextArea);
   form.appendChild(submitButton).appendChild(submitButtonText);
+
   this.el.appendChild(formHeader).appendChild(headerText);
+  this.el.appendChild(formIntroduction).appendChild(formIntroductionText);
   this.el.appendChild(formInstructions).appendChild(instructionsText);
-  this.el.appendChild(outputBox);
   this.el.appendChild(form);
   this.el.appendChild(outputBox).appendChild(outputBoxEl).appendChild(outputBoxPlaceholder);
 }
 
 MixedWordsLetters.prototype.listen = function() {
-  this.el.addEventListener('click', function(e){
+  const submitButton = document.getElementById('submitButton');
+  submitButton.addEventListener('click', function(e){
     e.preventDefault();
     const input = this.getInput();
     const result = this.mixWordsLetters(input);
